@@ -14,9 +14,30 @@
 </head>
 <body>
     
+
 <?php 
-    echo "<h1>php proragerm codes</h1>"
-    ?>
+
+session_start(); 
+
+
+include 'dbconnect.php';
+if (isset($_POST['submit'])) 
+{
+    $useremail = $_POST["loginemail"];
+    $password = $_POST["loginpassword"];
+
+
+    $query = "SELECT email FROM users WHERE email = '$useremail' AND password = '$password'";
+
+    $result = mysql_query($query) or die ("Failed Query of " . $query);
+
+
+    while($row = mysql_fetch_assoc($result))
+    {
+            $_SESSION["user"] = $username;
+    }
+}
+?>
     <header class="header-nav">
         <div class="d-flex ">
             <div class="col d-flex mr-6">
@@ -40,25 +61,25 @@
                         </a>
                         <div class="alternative-login-message m-3"><span><strong> OR LOGIN WITH EMAIL</strong></span></div>
                     </div>
-                    <form id="login_form">
-                        <div class="form-group mt-3 " id="email-div">
-                            <label  for="emailInput ">Email address / User name</label>
-                            <input type="email" class="form-control" id="login_email" aria-describedby="emailHelp" placeholder="Enter email">
-                            <label id="email_warn" style="color: #da2424;"></label>
-                            </div>
-                            <div class="form-group " id="pass-div">
-                            <label for="passwordInput">Password</label>
-                            <input type="password" class="form-control" id="login_password" placeholder="Password">
-                            </div>
-                            <p id="pass_warn" style="color: #da2424;text-align: center;"></p>
-                            <div class="form-check">
-                            <a class="float-right" href="#">Forgot password?</a>
-                            </div>
-                            <div class="btn-wrap">
-                            <button type="submit" class="btn ms-5 m-3 btn-primary" id="login_button">Login</button>
-                        </div>
-                        <p class="ms-2 secondary-link">Don’t have an account? <a href="sign up.php">Sign up</a></p>
-                    </form>
+        <form  action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post" id="login_form">
+            <div class="form-group mt-3 " id="email-div">
+                <label  for="emailInput ">Email address</label>
+                <input type="email" class="form-control" name="loginemail" aria-describedby="emailHelp" placeholder="Enter email" required>
+                <label id="email_warn" style="color: #da2424;"></label>
+                </div>
+                <div class="form-group " id="pass-div">
+                <label for="passwordInput">Password</label>
+                <input type="password" class="form-control" name="loginpassword" placeholder="Password" required>
+                </div>
+                <p id="pass_warn" style="color: #da2424;text-align: center;"></p>
+                <div class="form-check">
+                <a class="float-right" href="#">Forgot password?</a>
+                </div>
+                <div class="btn-wrap">
+                <button type="submit" class="btn ms-5 m-3 btn-primary" id="login_button">Login</button>
+            </div>
+            <p class="ms-2 secondary-link">Don’t have an account? <a href="sign up.php">Sign up</a></p>
+        </form>
                 </div>
             </div>
         </div>
