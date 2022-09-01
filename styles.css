@@ -21,5 +21,6 @@
 }
 .form-group{
     text-align: left;
+    float: left;
     font-weight: bold;
 }
