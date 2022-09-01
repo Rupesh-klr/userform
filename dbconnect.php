@@ -5,12 +5,9 @@ $password="";
 $db="login";
 $con = mysqli_connect($server,$user,$password,$db);
 if($con){
-    ?>
-    <script>
-        console.log("Connection Sucessfull...");
-        </script>
+echo '<script> console.log("Connection Sucessfull..."); </script> ';
 
-    <?php
+    
 }else{
     ?>
     <script>

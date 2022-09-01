@@ -50,7 +50,7 @@ if (isset($_POST['submit']))
    
     <main role="main" class="container card text-center mt-5 border-success signin-related-page" id="sign-in-page">
         
-        <div class="row-lg-12">
+
             <div class="col">
                 <h1  class="movecenter">login</h1>
                 <h1 class="movecenter">Welcome Back..!</h1>
@@ -61,28 +61,28 @@ if (isset($_POST['submit']))
                         </a>
                         <div class="alternative-login-message m-3"><span><strong> OR LOGIN WITH EMAIL</strong></span></div>
                     </div>
-        <form  action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post" id="login_form">
+       <form  action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post" id="login_form">
             <div class="form-group mt-3 " id="email-div">
                 <label  for="emailInput ">Email address</label>
-                <input type="email" class="form-control" name="loginemail" aria-describedby="emailHelp" placeholder="Enter email" required>
+                <input type="email" class="form-control" name="loginemail" placeholder="Enter email" required>
                 <label id="email_warn" style="color: #da2424;"></label>
-                </div>
+            </div>
                 <div class="form-group " id="pass-div">
-                <label for="passwordInput">Password</label>
-                <input type="password" class="form-control" name="loginpassword" placeholder="Password" required>
+                    <label for="passwordInput">Password</label>
+                    <input type="password" class="form-control" name="loginpassword" placeholder="Password" required>
                 </div>
                 <p id="pass_warn" style="color: #da2424;text-align: center;"></p>
                 <div class="form-check">
-                <a class="float-right" href="#">Forgot password?</a>
+                    <a class="float-right" href="#">Forgot password?</a>
                 </div>
-                <div class="btn-wrap">
+            <div class="btn-wrap">
                 <button type="submit" class="btn ms-5 m-3 btn-primary" id="login_button">Login</button>
             </div>
             <p class="ms-2 secondary-link">Don’t have an account? <a href="sign up.php">Sign up</a></p>
         </form>
                 </div>
             </div>
-        </div>
+    
         
         </main>
 </body>

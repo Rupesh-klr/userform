@@ -13,7 +13,7 @@ session_start();
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <link rel='stylesheet' type='text/css' media='screen' href='styles.css'>
     <script src='main.js'></script>
 </head>
@@ -30,6 +30,7 @@ session_start();
         $moblienumber= mysqli_real_escape_string($con,$_POST['mobileNumberInput']);
         $passw=password_hash($password,PASSWORD_BCRYPT);
         $repass=password_hash($repassword,PASSWORD_BCRYPT);
+        echo "hello";
         $emalquery="select * from login where email='$email'";
         $query= mysqli_query($con,$emalquery);
 
@@ -38,19 +39,15 @@ session_start();
             echo "email already exist";
         }else{
             if($password==$repassword){
-                $insertquery="insert into guvi()(id, firstname, lastname, email, password, repassword, mobile) values('$friname','$lasname','$email','$passw','$repass','$moblienumber') ";
-            $iquery=mysqli_query($con,$insertquery);
+                $insertquery="insert into guvi(id, firstname, lastname, email, password, repassword, mobile) values('$friname','$lasname','$email','$passw','$repass','$moblienumber') ";
+                $iquery=mysqli_query($con,$insertquery);
                 if ($iquery){
                     ?>
-                    <script>
-                        alert("inserted Sucessfull...");
-                        </script>
+                    <script>alert("inserted Sucessfull..."); </script>
                     <?php
                 }else{
                     ?>
-                    <script>
-                        alert("not inserted..");
-                        </script>
+                    <script>alert("not inserted.."); </script>
                     <?php
                 }
             }else{
@@ -78,9 +75,7 @@ session_start();
     <main role="main" class="container card text-center mt-5 border-success signin-related-page" id="sign-in-page">
         <h1>Sign up</h1>
         <h1 class="movecenter">Welcome to my Page..!</h1>
-        <div class="row-lg-12">
-        <div class="col">
-        <!-- <div class="col-md-6"> -->
+       
         <div class="google-sign-in" data-onsuccess="onSignIn">
             <a id="google-button" class="btn btn-outline-google border-primary">
                  <i class="icon-google float-left border-success "></i> Sign-up with Google
@@ -89,11 +84,11 @@ session_start();
             <span><strong>OR Sign-up with Email</strongOR></span>
             </div>
         </div>
+        <div class="col">
             <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post">
-                <div class="form-group float-left">
+                <div class="form-group ">
                     <label for="firstName">First Name  </label>
                     <input type="text" class="form-control" name="firstName" placeholder="Enter name" required>
-                    <!-- <?php print "<font color='red'>"?> -->
                     <div class="text-success">
                         <p>*This name will appear in certificates.</p>
                     </div>
@@ -136,14 +131,18 @@ session_start();
                     <span class="fa fa-fw fa-eye passToggle" id="togglePassword" aria-hidden="true">
                     </span>
                 </div>
-                <div class="form-group float-left">
+                <div class="form-group ">
                     <label for="mobileNumberInput">Mobile number:</label>
-                    <input type="tel" id="mobileNumberInput" class="form-control" name="mobileNumberInput" placeholder="Mobile number" maxlength="20" minlength="10" required>
+                    <input type="tel" id="mobileNumberInput" class="form-control float-right" name="mobileNumberInput" placeholder="Mobile number" maxlength="20" minlength="10" required>
                     <div class="invalid-feedback">
                         Please Enter a valid Mobile number
                     </div>
                 </div>
-                <div class="text-success" style="display: none;" id="register_msg" align="center">
+                
+            </form>
+        </div>
+
+                <div class="text-success" style="display: none;" id="register_msg" >
                 </div>
                 <div class="btn-wrap">
                     <button type="submit"  class="btn btn-primary mt-3">
@@ -153,11 +152,6 @@ session_start();
                     <p class="secondary-link">
                     Already registered User? <a href="login.php">Log in</a>
                     </p>
-                
-            </form>
-        </div>
-        </div>
-
         
         </main>
     
