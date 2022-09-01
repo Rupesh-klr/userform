@@ -1,0 +1,25 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+  }
+.mas {
+    margin-left: 3rem;
+}
+.header-nav{
+    background-color: lightgray;
+}
+.movecenter{
+    justify-content: center;
+    text-align: center;
+    align-content: center;
+    align-items: center;
+}
+.signin-related-page{
+    max-width: 500px;
+
+}
+.form-group{
+    text-align: left;
+    font-weight: bold;
+}
