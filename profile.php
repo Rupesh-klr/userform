@@ -11,52 +11,36 @@
     <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <link rel='stylesheet' type='text/css' media='screen' href='styles.css'>
-    
-</head>
-<body>
-    
-<script src='main.js'>
+    <script src='main.js'>
+        const dataBaseFromLocalStorage = JSON.parse(localStorage.getItem("myDataBase"))
+        if (dataBaseFromLocalStorage) {
+        myDataBase = dataBaseFromLocalStorage
+        console.log(myDataBase);
+        if(myDataBase==="Yes"){
+            console.log("234567890987654");
+            checked();
+        }
+    }
     var x = document.cookie.split(";");
     console.log(x);
-    document.addEventListener("DOMContentLoaded", () => {
-    chrome.extension.sendMessage({action: "ping"}, function(resp) {
-        console.log(JSON.stringify(resp));
-    });
-});
     </script>
+</head>
+<body>
+
     <?php
-     $redis = new Redis()  or die("Cannot load Redis module.");; 
-     $redis->connect('127.0.0.1', 6379);
-
-     if ($redis->exists($_COOKIE['firstname'])) {
-
-         $user_data = unserialize($redis->get($_COOKIE['firstname']));                    
-
-         if ($_COOKIE['token'] == $user_data['token']) {                 
-             echo "Welcome, " . $user_data['firstname'] . ' ' . $user_data['email'] . "<br>"
-                  . "Your token is " . $user_data['token']; 
-         } 
-        }
-    // echo "val".$_GET['checkeid'].$_GET['checkeid1'];
         $mapprefer=$_SESSION['mapprefer']; 
+        $var_value = $_COOKIE['varname'];
+        $val2=$_SESSION['userlogine'];
+        echo $mapprefer,$var_value,$val2;
         
-        if($mapprefer=="Yes"){
-            echo "gyhuij";
-            '<script>checked();console.log("lkjhk");
-            var userloginbtn=document.getElementById("userloginbtn");
-    function checked(){
-    if(userloginbtn.get){
-        userloginbtn.setAttribute("style","visibility:visible;")
-    }else{
-        userloginbtn.setAttribute("style","visibility:hidden;")
-    }
-}</script>';
+        if($mapprefer){
+            '<script>checked();console.log("lkjhk");</script>';
         }
     ?>
     <header class="header-nav">
         <div class="d-flex ">
             <div class="col d-flex  mr-6">
-                <a href="#" class="mr-6 mas">
+                <a href="index.php" class="mr-6 mas">
                     <h1 width="90px">HOME</h1>
                 </a>
             </div>
@@ -74,7 +58,7 @@
                 </div>
                 
             </div>
-            <div class="d-flex " id="userloginbtn" >
+            <div class="d-flex " id="userloginbtn" ">
                 <div class="dropdown">
                     <button class="dropbtn btn-secondary  btn-lg  dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="" alt=" "> 
@@ -84,54 +68,14 @@
                         <li><a class="dropdown-item active " href="profile.php">My profile</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="gallery.php">Gallery</a></li>
-                        <li><a class="dropdown-item" href="#">log out</a></li>
+                        <li><a class="dropdown-item" href="#"  onclick="unlogout()">log out</a></li>
                     </ul>
                 </div>
             </div>  
         </div>
     </header>
     <main>
-        <h1>index ups</h1> <?php 
-    echo "<h1>php proragerm codes</h1>";
-    
-    echo $mapprefer,TRUE,"hjkh";
-    ?>
-    <script src='main.js'>
-        const dataBaseFromLocalStorage = JSON.parse(localStorage.getItem("myDataBase"))
-        if (dataBaseFromLocalStorage) {
-        myDataBase = dataBaseFromLocalStorage
-        console.log(myDataBase);
-        if(myDataBase==="Yes"){
-            console.log("234567890987654");
-            checked();
-        }
-    }
-    </script>
-	
-    <?php if (isset($_GET['error'])): ?>
-		<p><?php echo $_GET['error']; ?></p>
-	<?php endif ?>
-    <div class="container-fluid">
-        <div class="col">
-            <div class=" d-flex imgessaver  justify-content-center">
-        <form action="upload.php"   class="col-sm-9 col-md-8 border border-dark p-4 m-5"
-           method="post"
-           enctype="multipart/form-data">
 
-           <input type="file" 
-                  name="my_image" style=" max-width: 75%;">
-
-           <input type="submit" 
-           class="   justify-content-center"
-                  name="submit"
-                  value="Upload">
-     	
-        </form>
-    </div>
-        </div>
-</div>
-    
-     
     </main>
 </body>
 </html>

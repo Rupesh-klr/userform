@@ -8,6 +8,7 @@
 }
 .header-nav{
     background-color: lightgray;
+   
 }
 .movecenter{
     justify-content: center;
@@ -21,7 +22,6 @@
 }
 .form-group{
     text-align: left;
-    float: left;
+    /* float: left; */
     font-weight: bold;
-    
 }
