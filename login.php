@@ -20,7 +20,7 @@
 </style>
 <body>
 <?php
-
+echo "";
 // session_start();
 // $val1="lk;kj";
 // $val1 = $_GET['$val1'];
@@ -110,7 +110,7 @@
                             $checked=FALSE;
                             $username="Frist name already exist.";
                         while($row = $result->fetch_assoc()) {
-                            //  echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
+                            echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
                                 echo $loginpassword."pass".$row['password']."<br>";
                                 $ver=password_verify($loginpassword,$row['password']);
                                     if($ver){
@@ -122,21 +122,23 @@
                                         // $_SESSION['userlogine'] ="Yes";
                                         // $_SESSION['val1'] ="Yes";
                                         // $_COOKIE['varname'] ="Yes";
-                                        ?>
-                                        <form action="index.php" method="post">
-                                            <input name="checkeid" value="Yes">
-                                            <input name="checkeid1" value="<?php $loginemail;?>">
-                                            <input type="submit" >
-                                        </form>
-                                        <?php
+                                        require 'redis/Autoload.php';
+                                        Predis\Autoloader::register();
+                                        $redis = new Predis\Client();
+                                        $redis->set('fristname', 'Yes');
+                                        $redis->set('useremailid', $loginemail);
+                                        
+                                        echo $redis->get('fristname');
+                                        echo $redis->get('useremailid');
+                                     
                                         setcookie("refferidlogin", "Yes");
                                         $session_token      = bin2hex(openssl_random_pseudo_bytes(16));
                                         $row['token'] = $session_token;
 
                                         setcookie('token', $session_token, time()+3600);
-                                        setcookie('username', $row['fristname'], time()+3600);
-                                        $redis = new Redis()  or die("Cannot load Redis module.");; 
-                                        $redis->connect('127.0.0.1', 6379);
+                                        setcookie('username', $row["firstname"], time()+3600);
+//                                       $redis = new Redis()  or die("Cannot load Redis module.");; 
+                                        //$redis->connect('127.0.0.1', 6379);
 
                                         $redis_key = $row["id"];
                                         $redis_username = $row["firstname"];
@@ -146,13 +148,13 @@
                                         $redis->set($redis_key, serialize($redis_username)); 
                                         $redis->set($redis_key, serialize($redis_email)); 
                                         $redis->expire($redis_key, 3600); 
-                                        if(!isset($_COOKIES[$cooki_name])) {
-                                            print("| "."");
-                                        }
+                                        // if(!isset($_COOKIES[$cooki_name])) {
+                                        //     print("| "."");
+                                        // }
 
                                         echo '<script >
                                             console.log("welcome");
-                                            localStorage.setItem("myDataBase", JSON.stringify("Yes"))
+                                            localStorage.setItem("myDataBase", JSON.stringify("es"))
                                                 location.href = "index.php";
                                                 </script>';
                                     }
@@ -162,6 +164,7 @@
                             $eamilerror="user doesn't  exist.";
                         }
         }
+        echo "ghj";
     }
    ?>
     <main role="main" class="container card text-center mt-5 border-success signin-related-page" id="sign-in-page">

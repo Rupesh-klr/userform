@@ -11,11 +11,11 @@
     <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <link rel='stylesheet' type='text/css' media='screen' href='styles.css'>
-    
+    <script src='main.js'></script>
 </head>
 <body>
     
-<script src='main.js'>
+<!-- <script >
     var x = document.cookie.split(";");
     console.log(x);
     document.addEventListener("DOMContentLoaded", () => {
@@ -23,46 +23,45 @@
         console.log(JSON.stringify(resp));
     });
 });
-    </script>
+    </script> -->
     <?php
-     $redis = new Redis()  or die("Cannot load Redis module.");; 
+    
+    require 'redis/Autoload.php';
+    Predis\Autoloader::register();
+    $redis = new Predis\Client();
+
+     //$redis = new Predis\Client()  or die("Cannot load Redis module.");
      $redis->connect('127.0.0.1', 6379);
-
-     if ($redis->exists($_COOKIE['firstname'])) {
-
-         $user_data = unserialize($redis->get($_COOKIE['firstname']));                    
-
-         if ($_COOKIE['token'] == $user_data['token']) {                 
-             echo "Welcome, " . $user_data['firstname'] . ' ' . $user_data['email'] . "<br>"
-                  . "Your token is " . $user_data['token']; 
-         } 
-        }
-    // echo "val".$_GET['checkeid'].$_GET['checkeid1'];
-        $mapprefer=$_SESSION['mapprefer']; 
+    //  if ( $redis->get('fristname')=="Yes") {
         
-        if($mapprefer=="Yes"){
-            echo "gyhuij";
-            '<script>checked();console.log("lkjhk");
-            var userloginbtn=document.getElementById("userloginbtn");
-    function checked(){
-    if(userloginbtn.get){
-        userloginbtn.setAttribute("style","visibility:visible;")
-    }else{
-        userloginbtn.setAttribute("style","visibility:hidden;")
-    }
-}</script>';
-        }
+        // echo "user is login\n<br>",$_COOKIE['fristname'];
+        // $user_data = unserialize($redis->get($_COOKIE['fristname'])); 
+        // echo $user_data,$redis->get($_COOKIE['fristname']);  
+        //  if ($_COOKIE['token'] == $user_data['token']) {                 
+        //      echo "Welcome, " . $user_data['firstname'] . ' ' . $user_data['email'] . "<br>"
+        //           . "Your token is " . $user_data['token']; 
+        //  } 
+        // }
+        // else{
+        //     echo "your need to login";
+        // }
+    // echo "val".$_GET['checkeid'].$_GET['checkeid1'];
+        // $mapprefer=$_SESSION['mapprefer']; 
+        
+        // if($mapprefer=="Yes"){
+        //     '<script>checked();console.log("lkjhk");</script>';
+        // }
     ?>
     <header class="header-nav">
         <div class="d-flex ">
-            <div class="col d-flex  mr-6">
+            <div class="col d-flex  mr-6" id="userlogoutbtn1">
                 <a href="#" class="mr-6 mas">
                     <h1 width="90px">HOME</h1>
                 </a>
             </div>
             <div class="col d-flex align-items-end" >
                 
-                <div class="d-flex head-user-profile " >
+                <!-- <div class="d-flex head-user-profile " id="userlogoutbtn2" >
                     <ul class="account-links-group d-flex ">
                         <li class="nav-link  login-btn">
                             <a class="nav-link   text-primary text-center px-4" href="login.php">Login</a>
@@ -71,14 +70,15 @@
                             <a class="nav-link btn btn-primary text-white px-4" href="sign up.php">Sign up</a>
                         </li>
                     </ul>
-                </div>
-                
+                </div> -->
+           <?php
+           include 'header.php';
+           headershow();?>     
             </div>
-            <div class="d-flex " id="userloginbtn" >
+            <!-- <div class="d-flex " id="userloginbtns" style="visibility: hidden;">
                 <div class="dropdown">
                     <button class="dropbtn btn-secondary  btn-lg  dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="" alt=" "> 
-                    <!-- <?php echo $username;?> -->
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark" aria-labelledby="dropdownMenu2">
                         <li><a class="dropdown-item active " href="profile.php">My profile</a></li>
@@ -88,13 +88,12 @@
                     </ul>
                 </div>
             </div>  
-        </div>
+        </div> -->
+        
     </header>
     <main>
         <h1>index ups</h1> <?php 
     echo "<h1>php proragerm codes</h1>";
-    
-    echo $mapprefer,TRUE,"hjkh";
     ?>
     <script src='main.js'>
         const dataBaseFromLocalStorage = JSON.parse(localStorage.getItem("myDataBase"))

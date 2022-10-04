@@ -22,6 +22,10 @@
 }
 .form-group{
     text-align: left;
+    /* height: 75px;
+    width: 180px; */
     /* float: left; */
+    /* visibility: hidden; */
+    
     font-weight: bold;
 }
