@@ -3,6 +3,7 @@
 ># The techonlogy used are php,html,bootstrap,css & redis local storage sessions.
 ># **Help for redias working windows 10.**
 >Windows Subsystem for Linux (WSL).
+> [check it th project](https://youtu.be/Mm5BuAmcn1I)
 
 # For your copying and pasting convenience, here are the installation commands Guy uses in the video:
 
