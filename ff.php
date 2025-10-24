@@ -28,7 +28,6 @@
              <div class="col album ">
              	<img class="col-6" src="uploads/IMG-633a3d49e9eea5.23807009.png">
              </div>
-          		
                 </div>
 </body>
 </html>
